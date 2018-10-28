@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26dp"
+        android:text="@string/payment"
+        android:textStyle="bold"
+        android:textColor="@color/textcolordialog"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="20dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/departure"
+                android:textSize="18dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/textcolordialog"
+                />
+            <TextView
+                android:id="@+id/payment_info_depart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Info départ"
+                android:textSize="18dp"
+                android:textColor="@color/textcolordialog"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/retour"
+                android:textSize="18dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/textcolordialog"
+                />
+            <TextView
+                android:id="@+id/payment_info_return"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Info retour"
+                android:textSize="18dp"
+                android:textColor="@color/textcolordialog"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hostel"
+                android:textSize="18dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/textcolordialog"
+                />
+            <TextView
+                android:id="@+id/payment_info_hotel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Info hotel"
+                android:textSize="18dp"
+                android:textColor="@color/textcolordialog"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/choose_card"
+        android:textColor="@color/textcolordialog"/>
+
+    <RadioGroup
+        android:id="@+id/payment_card_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/payment_visa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visa"
+            android:checked="true"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+        <RadioButton
+            android:id="@+id/payment_mastercard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Master Card"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+
+    </RadioGroup>
+
+
+    <EditText
+        android:id="@+id/payment_card_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:digits="0123456789"
+        android:inputType="numberDecimal"
+        android:backgroundTint="@color/textcolordialog"
+        android:textColor="@color/textcolordialog"
+        android:hint="@string/card_number"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/card_expiration"
+        android:textColor="@color/textcolordialog"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/payment_exp_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="/"
+            android:textColor="@color/textcolordialog"/>
+
+        <Spinner
+            android:id="@+id/payment_exp_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/payment_card_crypto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:digits="0123456789"
+        android:inputType="numberDecimal"
+        android:backgroundTint="@color/textcolordialog"
+        android:textColor="@color/textcolordialog"
+        android:hint="@string/cryptogramme"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/payment_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/cancel_paymen"
+            android:background="@drawable/buttonstyle"
+            android:textColor="@color/textcolordialog"></Button>
+
+        <Button
+            android:id="@+id/paymment_validate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/validate_paymen"
+            android:background="@drawable/buttonstyle"
+            android:textColor="@color/textcolordialog"></Button>
+
+    </LinearLayout>
+
+
+</LinearLayout>

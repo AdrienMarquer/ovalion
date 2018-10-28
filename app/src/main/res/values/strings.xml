@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Ovalion</string>
+    <string name="navigation_drawer_open">Ouvrir le drawer</string>
+    <string name="navigation_drawer_close">Fermer le drawer</string>
+    <string name="nav_header_title">Ovalion</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Header</string>
+    <string name="action_settings">Paramètres</string>
+
+    <string name="fragment_calendar">Calendrier</string>
+    <string name="fragment_team">Mon équipe</string>
+    <string name="fragment_reserv">Mes réservations</string>
+    <string name="fragment_param">Paramètres</string>
+
+    <string name="validate">Valider</string>
+    <string name="choose_team">Choisir une équipe</string>
+    <string name="choose_lang">Choisir une langue</string>
+    <string name="radio_french">Francais</string>
+    <string name="radio_english">Anglais</string>
+
+    <string name="reservation">Réservation</string>
+    <string name="choose_trip">Choix du trip</string>
+    <string name="radio_bustrip">Bus</string>
+    <string name="radio_bustriphotel">Bus + Hotel</string>
+    <string name="choose_ticket">Choix du ticket</string>
+    <string name="radio_ticketVIP">Ticket VIP</string>
+    <string name="radio_ticketFront">Ticket Front</string>
+    <string name="radio_ticketturn">Ticket Turn</string>
+    <string name="cancel">Annuler</string>
+
+    <string name="payment">Paiement</string>
+    <string name="departure">Départ :</string>
+    <string name="retour">Retour :</string>
+    <string name="hostel">Hotel</string>
+    <string name="choose_card">Type de carte</string>
+    <string name="card_number">Numéro de carte</string>
+    <string name="card_expiration">Date d\'éxpiration</string>
+    <string name="cryptogramme">Cryptogramme</string>
+    <string name="cancel_paymen">Annuler le paiement</string>
+    <string name="validate_paymen">Valider le paiment</string>
+
+    <string name="location">Localisation :</string>
+
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="choose_all_team">Mode Toutes les équipes ?</string>
+
+    <string name="ranking">Classement</string>
+    <string name="team_info">Info équipe</string>
+
+    <string name="reservavailable">Réservation disponible !</string>
+
+    <string name="matches_played">Matchs joués : </string>
+    <string name="matches_won">Matchs gagnés : </string>
+    <string name="matches_lost">Matchs perdus : </string>
+    <string name="points_scored">Points marqués : </string>
+    <string name="points_conceded">Points concédés : </string>
+
+
+</resources>

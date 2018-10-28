@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="@string/choose_team"
+        android:textColor="@color/textcolordialog"/>
+
+    <Spinner
+        android:id="@+id/param_team_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        tools:layout_editor_absoluteX="42dp"
+        android:textColor="@color/textcolordialog"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/choose_lang"
+        android:textColor="@color/textcolordialog"/>
+
+    <RadioGroup
+        android:id="@+id/param_radio_lang_groupe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/param_radioFr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_french"
+            android:checked="true"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+        <RadioButton
+            android:id="@+id/param_radioEng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_english"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/choose_all_team"
+        android:textColor="@color/textcolordialog"/>
+
+    <RadioGroup
+        android:id="@+id/param_all_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/param_all_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes"
+            android:checked="true"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+        <RadioButton
+            android:id="@+id/param_all_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/param_validate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/validate"
+        android:background="@drawable/buttonstyle"
+        android:textColor="@color/textcolordialog"></Button>
+
+
+</LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="@string/choose_team"
+        android:textColor="@color/textcolordialog"
+        />
+
+    <Spinner
+        android:id="@+id/first_team_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        tools:layout_editor_absoluteX="42dp"
+        android:textColor="@color/textcolordialog"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/choose_lang"
+        android:textColor="@color/textcolordialog"/>
+
+    <RadioGroup
+        android:id="@+id/first_radio_lang_groupe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/first_radioFr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_french"
+            android:checked="true"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+
+        <RadioButton
+            android:id="@+id/first_radioEng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_english"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="131dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="30dp"
+        android:onClick="onValidate"
+        android:background="@drawable/buttonstyle"
+        android:textColor="@color/textcolordialog"
+        android:text="@string/validate"></Button>
+</LinearLayout>

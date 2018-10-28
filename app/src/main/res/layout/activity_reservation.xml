@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26dp"
+        android:text="@string/reservation"
+        android:textStyle="bold"
+        android:textColor="@color/textcolordialog"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="30dp">
+
+        <TextView
+            android:id="@+id/homeReservationAct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textStyle="bold"
+            android:layout_weight="5"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:textColor="@color/textcolordialog"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="VS"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/textcolordialog"
+            />
+        <TextView
+            android:id="@+id/awayReservationAct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Away"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:textColor="@color/textcolordialog"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/choose_trip"
+        android:textColor="@color/textcolordialog"/>
+
+    <RadioGroup
+        android:id="@+id/reserv_radio_trip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/reserv_radioBus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_bustrip"
+            android:checked="true"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+        <RadioButton
+            android:id="@+id/reserv_radioBusHotel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_bustriphotel"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/choose_ticket"
+        android:textColor="@color/textcolordialog"/>
+
+    <RadioGroup
+        android:id="@+id/reserv_radio_ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/reserv_radioTicketVIP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_ticketVIP"
+            android:checked="true"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+        <RadioButton
+            android:id="@+id/reserv_radioTicketFront"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_ticketFront"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+        <RadioButton
+            android:id="@+id/reserv_radioTicketTurn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_ticketturn"
+            android:textColor="@color/textcolordialog"
+            android:buttonTint="@color/textcolordialog"/>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/reserv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/cancel"
+            android:background="@drawable/buttonstyle"
+            android:textColor="@color/textcolordialog"></Button>
+
+        <Button
+            android:id="@+id/reserv_validate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/validate"
+            android:background="@drawable/buttonstyle"
+            android:textColor="@color/textcolordialog"></Button>
+
+    </LinearLayout>
+
+
+</LinearLayout>

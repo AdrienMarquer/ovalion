@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_action_calendar"
+            android:title="@string/fragment_calendar" />
+        <item
+            android:id="@+id/nav_team"
+            android:icon="@drawable/ic_action_team"
+            android:title="@string/fragment_team" />
+        <item
+            android:id="@+id/nav_reserv"
+            android:icon="@drawable/ic_action_reserv"
+            android:title="@string/fragment_reserv" />
+        <item
+            android:id="@+id/nav_param"
+            android:icon="@drawable/ic_action_param"
+            android:title="@string/fragment_param" />
+    </group>
+</menu>
