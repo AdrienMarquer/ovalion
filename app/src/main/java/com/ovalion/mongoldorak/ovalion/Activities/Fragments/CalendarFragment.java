@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ovalion.mongoldorak.ovalion.API.SportRadar.apiSportRadarMatchCalendar;
+import com.ovalion.mongoldorak.ovalion.API.SportRadar.apiSportRadarMatchScoreCalendar;
 import com.ovalion.mongoldorak.ovalion.Adapters.ListCalendarAdapter;
 import com.ovalion.mongoldorak.ovalion.Models.Match;
 import com.ovalion.mongoldorak.ovalion.Models.TeamsEnum;
@@ -46,17 +47,43 @@ public class CalendarFragment  extends Fragment
                 .getString("team","sr:competitor:5747"));
 
 
-        fireYourAsyncTask();
+        fireMatchTask();
 
         return rootView;
     }
 
     public void setMatchs(List<Match> matchs) {
         this.matchs = matchs;
+
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        fireScoreTask();
+    }
+
+    public void setScores(List<Match> scores){
+
+            for(int j = 0; j < matchs.size(); j++){
+                for(int i =0 ; i < scores.size(); i++){
+                    if (scores.get(i).getId().contains(matchs.get(j).getId())){
+                        matchs.get(j).setScoreHome(scores.get(i).getScoreHome());
+                        matchs.get(j).setScoreAway(scores.get(i).getScoreAway());
+                    }
+                }
+            }
+
+
         rv.setAdapter(new ListCalendarAdapter(getContext(),matchs));
     }
 
-    private void fireYourAsyncTask(){
+    private void fireMatchTask(){
         new apiSportRadarMatchCalendar(this,team.getId(),all_team).execute();
+    }
+
+    private void fireScoreTask(){
+        new apiSportRadarMatchScoreCalendar(this).execute();
     }
 }

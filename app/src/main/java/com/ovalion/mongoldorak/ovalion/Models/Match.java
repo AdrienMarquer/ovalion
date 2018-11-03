@@ -2,6 +2,7 @@ package com.ovalion.mongoldorak.ovalion.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 public class Match implements Parcelable {
     private String id ;
     private String date;
@@ -10,6 +11,8 @@ public class Match implements Parcelable {
     private String map_coordinates;
     private Competitor competitorA;
     private Competitor competitorB;
+    private int scoreHome ;
+    private int scoreAway ;
 
     public Match(){}
 
@@ -73,6 +76,24 @@ public class Match implements Parcelable {
         return status;
     }
 
+    public int getScoreHome() {
+        return scoreHome;
+    }
+
+    public void setScoreHome(int scoreHome) {
+        this.scoreHome = scoreHome;
+    }
+
+    public int getScoreAway() {
+        return scoreAway;
+    }
+
+    public void setScoreAway(int scoreAway) {
+        this.scoreAway = scoreAway;
+    }
+
+
+
     protected Match(Parcel in) {
         id = in.readString();
         date = in.readString();
@@ -81,6 +102,8 @@ public class Match implements Parcelable {
         map_coordinates = in.readString();
         competitorA = (Competitor) in.readValue(Competitor.class.getClassLoader());
         competitorB = (Competitor) in.readValue(Competitor.class.getClassLoader());
+        scoreHome = in.readInt();
+        scoreAway = in.readInt();
     }
 
     @Override
@@ -97,6 +120,8 @@ public class Match implements Parcelable {
         dest.writeString(map_coordinates);
         dest.writeValue(competitorA);
         dest.writeValue(competitorB);
+        dest.writeInt(scoreHome);
+        dest.writeInt(scoreAway);
     }
 
     @SuppressWarnings("unused")

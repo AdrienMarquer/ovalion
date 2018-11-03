@@ -1,6 +1,11 @@
 package com.ovalion.mongoldorak.ovalion.API.BlaBlaCar;
 
+import android.os.AsyncTask;
+
+import com.ovalion.mongoldorak.ovalion.Activities.Fragments.CalendarFragment;
+import com.ovalion.mongoldorak.ovalion.Activities.ReservationActivity;
 import com.ovalion.mongoldorak.ovalion.Models.BusTrip;
+import com.ovalion.mongoldorak.ovalion.Models.Match;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,9 +19,32 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlaBlaCarAPI
+public class BlaBlaCarAPI extends AsyncTask<Void, Void, List<BusTrip>>
 {
-        public List<BusTrip> request(String departure, String arrival, String date) {
+    ReservationActivity frag;
+    String departure;
+    String arrival;
+    String date;
+
+    public BlaBlaCarAPI(ReservationActivity frag, String departure, String arrival, String date)
+    {
+        this.frag = frag;
+        this.departure = departure;
+        this.arrival = arrival;
+        this.date = date;
+    }
+
+    @Override
+    protected List<BusTrip> doInBackground(Void... voids) {
+        return request();
+    }
+
+    @Override
+    protected void onPostExecute(List<BusTrip> trips){
+        frag.setTrips(trips);
+    }
+
+        public List<BusTrip> request() {
             try {
 
                 String urlString = "https://public-api.blablacar.com/api/v2/trips?key=2abd279232e54223bf2fe93793436c1f&fc=" + departure + "&tc=" + arrival + "&db=" + date + "&cur=EUR";

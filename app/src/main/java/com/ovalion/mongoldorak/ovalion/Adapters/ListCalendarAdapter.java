@@ -51,6 +51,7 @@ public class ListCalendarAdapter extends RecyclerView.Adapter<ListCalendarAdapte
         viewHolder.heureCalendar.setText(outputlist.get(position).getTime());
         viewHolder.homeCalendar.setText(outputlist.get(position).getCompetitorA().getName());
         viewHolder.awayCalendar.setText(outputlist.get(position).getCompetitorB().getName());
+        viewHolder.awayCalendar.setText(outputlist.get(position).getCompetitorB().getName());
 
         //set on click listener for each element
         viewHolder.container.setOnClickListener(onClickListener(position));

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.format.DateUtils;
@@ -29,6 +30,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MatchDialog extends Dialog implements
         android.view.View.OnClickListener {
@@ -89,13 +92,46 @@ public class MatchDialog extends Dialog implements
 
         String matchDate =  match.getDate();
 
-        if(!onMonthCheck(matchDate)){
+        if(!onMonthCheck(matchDate) || isFavTeam(match.getCompetitorA().getId())){
             btnReserv.setVisibility(View.GONE);
         }else{
             Toast.makeText(context,context.getResources().getString(R.string.reservavailable),Toast.LENGTH_SHORT);
         }
 
         if(match.getStatus()){
+            homeScoreDialog.setText("" +match.getScoreHome());
+            awayScoreDialog.setText("" +match.getScoreAway());
+
+            if(match.getScoreHome() > match.getScoreAway()) {
+                homeScoreDialog.setTypeface(null, Typeface.BOLD);
+                if (isFavTeam(match.getCompetitorA().getId())) {
+                    homeScoreDialog.setTextColor(Color.GREEN);
+                    awayScoreDialog.setTextColor(Color.GREEN);
+                    dialogtiret.setTextColor(Color.GREEN);
+                } else if(isFavTeam(match.getCompetitorB().getId())) {
+                    homeScoreDialog.setTextColor(Color.RED);
+                    awayScoreDialog.setTextColor(Color.RED);
+                    dialogtiret.setTextColor(Color.RED);
+                }
+            }
+            else if(match.getScoreHome() < match.getScoreAway()){
+                awayScoreDialog.setTypeface(null, Typeface.BOLD);
+                if(isFavTeam(match.getCompetitorB().getId())){
+                    homeScoreDialog.setTextColor(Color.GREEN);
+                    awayScoreDialog.setTextColor(Color.GREEN);
+                    dialogtiret.setTextColor(Color.GREEN);
+                }else if(isFavTeam(match.getCompetitorA().getId())) {
+                    homeScoreDialog.setTextColor(Color.RED);
+                    awayScoreDialog.setTextColor(Color.RED);
+                    dialogtiret.setTextColor(Color.RED);
+                }
+            }
+            else{
+                homeScoreDialog.setTextColor(Color.GRAY);
+                awayScoreDialog.setTextColor(Color.GRAY);
+                dialogtiret.setTextColor(Color.GRAY);
+            }
+
 
         }else{
             awayScoreDialog.setVisibility(View.GONE);
@@ -122,6 +158,17 @@ public class MatchDialog extends Dialog implements
             }
         });
 
+    }
+
+    private boolean isFavTeam(String id) {
+        String favId = context.getSharedPreferences("userInfo", MODE_PRIVATE)
+                .getString("team","sr:competitor:5747");
+
+        if(favId.contains(id)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     //La réservation est disponible uniquement un mois à l'avance

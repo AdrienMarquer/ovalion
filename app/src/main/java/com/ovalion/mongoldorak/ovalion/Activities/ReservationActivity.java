@@ -3,15 +3,23 @@ package com.ovalion.mongoldorak.ovalion.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ovalion.mongoldorak.ovalion.API.BlaBlaCar.BlaBlaCarAPI;
+import com.ovalion.mongoldorak.ovalion.API.SportRadar.apiSportRadarMatchCalendar;
+import com.ovalion.mongoldorak.ovalion.Adapters.ListCalendarAdapter;
+import com.ovalion.mongoldorak.ovalion.Models.BusTrip;
 import com.ovalion.mongoldorak.ovalion.Models.Match;
 import com.ovalion.mongoldorak.ovalion.Models.Reservation;
+import com.ovalion.mongoldorak.ovalion.Models.TeamsEnum;
 import com.ovalion.mongoldorak.ovalion.R;
+
+import java.util.List;
 
 public class ReservationActivity extends AppCompatActivity
 {
@@ -24,6 +32,9 @@ public class ReservationActivity extends AppCompatActivity
 
     private Match match;
     private Reservation reserv;
+
+    private List<BusTrip> trips;
+    private boolean requestEnded = false;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +68,8 @@ public class ReservationActivity extends AppCompatActivity
     }
 
     private void reservclick(){
+
+
         String bustripType = "simple";
         String ticketType = "deluxe";
 
@@ -83,12 +96,39 @@ public class ReservationActivity extends AppCompatActivity
                 break;
         }
 
-        //Ajouter les appels a airbnb et blablacar
         reserv = new Reservation(match,bustripType,ticketType);
+        reserv.setHostel("Ibis " + TeamsEnum.getCityById(match.getCompetitorA().getId()));
+
+        try{
+            //Ajouter les appels a blablacar
+            fireYourAsyncTask();
+        }catch (Exception e){
+
+        }
+
+    }
+
+    public void setTrips(List<BusTrip> trips) {
+        this.trips = trips;
+        if(trips != null)
+            Log.d("Adrien","trips " + trips.size());
+
+        if(trips == null){
+            Log.d("Adrien","trips null");
+        }else{
+            reserv.setBusGo(trips.get(0));
+            reserv.setBusBack(trips.get(1));
+            Log.d("Adrien","trips OK");
+
+        }
 
         Intent intent = new Intent(this, PaymentActivity.class);
-        intent.putExtra("Reservation",match);
+        intent.putExtra("Reservation",reserv);
         this.startActivity(intent);
+    }
+
+    private void fireYourAsyncTask(){
+        new BlaBlaCarAPI(this,TeamsEnum.getPosById(match.getCompetitorA().getId()),TeamsEnum.getPosById(match.getCompetitorB().getId()),match.getDate()).execute();
     }
 
     private void cancelClick(){
