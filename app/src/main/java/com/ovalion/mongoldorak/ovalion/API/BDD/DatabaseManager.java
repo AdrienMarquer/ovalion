@@ -10,6 +10,7 @@ import android.util.Log;
 import com.ovalion.mongoldorak.ovalion.API.BDD.Cursor.CursorToReserv;
 import com.ovalion.mongoldorak.ovalion.Models.Reservation;
 import com.ovalion.mongoldorak.ovalion.Models.ReservationBDD;
+import com.ovalion.mongoldorak.ovalion.R;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     //Database infos
     private static final String DATABASE_NAME = "Ovalion.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     //Tables names
     private static final String TABLE_RESERV = "table_reserv";
@@ -39,16 +40,22 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String COL_BUS_BACK_ID = "return_id";
     private static final String COL_BUS_BACK_GPS = "return_gps";
     private static final String COL_HOSTEL = "hostel";
+    private static final String COL_DATE = "date";
+    private static final String COL_HOUR = "hour";
 
 
     private static final String CREATE_RESERVBDD = "CREATE TABLE " + TABLE_RESERV + " ("
             + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COL_HOME_TEAM + " TEXT , " + COL_AWAY_TEAM + " TEXT , "
             + COL_LOCATION + " TEXT , " + COL_BUS_GO + " TEXT , " + COL_BUS_GO_ID + " TEXT ," + COL_BUS_GO_GPS + " TEXT ,"
-            + COL_BUS_BACK + " TEXT , " + COL_BUS_BACK_ID + " TEXT , " + COL_BUS_BACK_GPS + " TEXT , " + COL_HOSTEL + " TEXT);";
+            + COL_BUS_BACK + " TEXT , " + COL_BUS_BACK_ID + " TEXT , " + COL_BUS_BACK_GPS + " TEXT , " + COL_HOSTEL + " TEXT, " + COL_DATE + " TEXT, "+ COL_HOUR + " TEXT);";
+
+    private final Context context;
 
     public DatabaseManager(Context context) {
         super(context, DATABASE_NAME , null, DATABASE_VERSION);
+        this.context = context;
+
     }
 
     @Override
@@ -73,13 +80,29 @@ public class DatabaseManager extends SQLiteOpenHelper {
         values.put(COL_HOME_TEAM, reserv.getMatch().getCompetitorA().getName());
         values.put(COL_AWAY_TEAM, reserv.getMatch().getCompetitorB().getName());
         values.put(COL_LOCATION, reserv.getLocation());
-        values.put(COL_BUS_GO, reserv.getBusGo().getDate());
-        values.put(COL_BUS_GO_ID, reserv.getBusGo().getId());
-        values.put(COL_BUS_GO_GPS, reserv.getBusGo().getDeparture_gps());
-        values.put(COL_BUS_BACK, reserv.getBusBack().getDate());
-        values.put(COL_BUS_BACK_ID, reserv.getBusBack().getId());
-        values.put(COL_BUS_BACK_GPS, reserv.getBusBack().getDeparture_gps());
+        if(reserv.getBusGo() != null){
+            values.put(COL_BUS_GO, reserv.getBusGo().getDeparture_adress());
+            values.put(COL_BUS_GO_ID, reserv.getBusGo().getId());
+            values.put(COL_BUS_GO_GPS, reserv.getBusGo().getDeparture_gps());
+        }else{
+            values.put(COL_BUS_GO, context.getResources().getString(R.string.nodisp));
+            values.put(COL_BUS_GO_ID, context.getResources().getString(R.string.nodisp));
+            values.put(COL_BUS_GO_GPS, context.getResources().getString(R.string.nodisp));
+        }
+
+        if(reserv.getBusBack() != null){
+            values.put(COL_BUS_BACK, reserv.getBusBack().getDeparture_adress());
+            values.put(COL_BUS_BACK_ID, reserv.getBusBack().getId());
+            values.put(COL_BUS_BACK_GPS, reserv.getBusBack().getDeparture_gps());
+        }else{
+            values.put(COL_BUS_BACK, context.getResources().getString(R.string.nodisp));
+            values.put(COL_BUS_BACK_ID, context.getResources().getString(R.string.nodisp));
+            values.put(COL_BUS_BACK_GPS, context.getResources().getString(R.string.nodisp));
+        }
+
         values.put(COL_HOSTEL, reserv.getHostel());
+        values.put(COL_DATE, reserv.getMatch().getDate());
+        values.put(COL_HOUR, reserv.getMatch().getTime());
 
         db.insert(TABLE_RESERV, null, values);
 

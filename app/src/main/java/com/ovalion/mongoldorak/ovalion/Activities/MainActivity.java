@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity
             lang = getSharedPreferences("userInfo", MODE_PRIVATE)
                     .getString("lang","fr");
 
-            Log.d("FIRST","team     " + team.toString() );
-            Log.d("FIRST","lang     " + lang );
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

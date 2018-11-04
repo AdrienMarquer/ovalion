@@ -13,22 +13,29 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ovalion.mongoldorak.ovalion.API.BDD.DatabaseManager;
 import com.ovalion.mongoldorak.ovalion.Activities.Dialogs.MatchDialog;
 import com.ovalion.mongoldorak.ovalion.Models.Match;
 import com.ovalion.mongoldorak.ovalion.Models.Reservation;
+import com.ovalion.mongoldorak.ovalion.Models.ReservationBDD;
 import com.ovalion.mongoldorak.ovalion.R;
 
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ListTripAdapter extends RecyclerView.Adapter<ListTripAdapter.ListTripViewHolder>{
-    private List<Reservation> outputlist;
+    private List<ReservationBDD> outputlist;
     private final Context context;
     private final LayoutInflater inflater;
     private int mExpandedPosition = -1;
     boolean isExpanded;
+    private DatabaseManager db;
 
 
-    public ListTripAdapter(Context context, List<Reservation> reservs) {
+    public ListTripAdapter(Context context, List<ReservationBDD> reservs) {
         this.outputlist = reservs;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -40,11 +47,12 @@ public class ListTripAdapter extends RecyclerView.Adapter<ListTripAdapter.ListTr
         View view = inflater.inflate(R.layout.list_trip_item,viewGroup,false);
         ListTripAdapter.ListTripViewHolder holder = new ListTripAdapter.ListTripViewHolder(view);
 
+        db = new DatabaseManager(context);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ListTripViewHolder viewHolder,final int position) {
+    public void onBindViewHolder(final ListTripViewHolder viewHolder, final int position) {
 
         final boolean isExpanded = position==mExpandedPosition;
 
@@ -58,10 +66,14 @@ public class ListTripAdapter extends RecyclerView.Adapter<ListTripAdapter.ListTr
         viewHolder.trip_info_hotel_title.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
         viewHolder.btnDeleteReserv.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
 
-        viewHolder.dateTrip.setText(outputlist.get(position).getMatch().getDate());
-        viewHolder.heureTrip.setText(outputlist.get(position).getMatch().getTime());
-        viewHolder.homeTrip.setText(outputlist.get(position).getMatch().getCompetitorA().getName());
-        viewHolder.awayTrip.setText(outputlist.get(position).getMatch().getCompetitorB().getName());
+        viewHolder.dateTrip.setText(outputlist.get(position).getDate());
+        viewHolder.heureTrip.setText(outputlist.get(position).getHour());
+        viewHolder.homeTrip.setText(outputlist.get(position).getHome_team());
+        viewHolder.awayTrip.setText(outputlist.get(position).getAway_team());
+        viewHolder.trip_info_location.setText(outputlist.get(position).getLocation());
+        viewHolder.trip_info_depart.setText(outputlist.get(position).getDeparture());
+        viewHolder.trip_info_return.setText(outputlist.get(position).getReturn_());
+        viewHolder.trip_info_hotel.setText(outputlist.get(position).getHostel());
 
         viewHolder.container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +86,14 @@ public class ListTripAdapter extends RecyclerView.Adapter<ListTripAdapter.ListTr
         viewHolder.btnDeleteReserv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //delete Reservation
+                if(is24hours(outputlist.get(position).getDate())){
+                    db.deleteTask(outputlist.get(position).getId());
+
+                    outputlist.remove(outputlist.get(position));
+                    notifyItemRemoved(viewHolder.getLayoutPosition());
+                }else{
+                    Toast.makeText(context,"Impossible",Toast.LENGTH_LONG);
+                }
             }
         });
     }
@@ -118,6 +137,25 @@ public class ListTripAdapter extends RecyclerView.Adapter<ListTripAdapter.ListTr
             trip_info_depart_title = (TextView) itemView.findViewById(R.id.trip_info_depart_title);
             trip_info_return_title = (TextView) itemView.findViewById(R.id.trip_info_return_title);
             trip_info_hotel_title = (TextView) itemView.findViewById(R.id.trip_info_hotel_title);
+        }
+    }
+
+    private boolean is24hours(String date)
+    {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date current = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(current);
+        cal.add(Calendar.HOUR_OF_DAY, 24);
+        current = cal.getTime();
+
+        Date dateB = df.parse(date, new ParsePosition(0));
+
+        if (current.compareTo(dateB) <= 0) {
+            return true;
+        }else{
+            return false;
         }
     }
 }

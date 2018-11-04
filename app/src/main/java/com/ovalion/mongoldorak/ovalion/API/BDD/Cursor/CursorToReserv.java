@@ -23,6 +23,8 @@ public class CursorToReserv {
     private static final int NUM_COL_BUS_BACK_ID = 8;
     private static final int NUM_COL_BUS_BACK_GPS = 9;
     private static final int NUM_COL_HOSTEL = 10;
+    private static final int NUM_COL_DATE = 11;
+    private static final int NUM_COL_HOUR = 12;
 
     public static ReservationBDD toReserv (Cursor cursor){
         if (cursor.getCount() == 0) return null;
@@ -42,6 +44,8 @@ public class CursorToReserv {
         reserv.setReturn_id(cursor.getString(NUM_COL_BUS_BACK_ID));
         reserv.setReturn_gps(cursor.getString(NUM_COL_BUS_BACK_GPS));
         reserv.setHostel(cursor.getString(NUM_COL_HOSTEL));
+        reserv.setDate(cursor.getString(NUM_COL_DATE));
+        reserv.setHour(cursor.getString(NUM_COL_HOUR));
 
         cursor.close();
 
@@ -71,6 +75,8 @@ public class CursorToReserv {
             reserv.setReturn_id(cursor.getString(NUM_COL_BUS_BACK_ID));
             reserv.setReturn_gps(cursor.getString(NUM_COL_BUS_BACK_GPS));
             reserv.setHostel(cursor.getString(NUM_COL_HOSTEL));
+            reserv.setDate(cursor.getString(NUM_COL_DATE));
+            reserv.setHour(cursor.getString(NUM_COL_HOUR));
 
             reservs.add(reserv);
             cursor.moveToNext();

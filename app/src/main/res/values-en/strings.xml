@@ -32,7 +32,7 @@
     <string name="payment">Payment</string>
     <string name="departure">Departure :</string>
     <string name="retour">Arriving :</string>
-    <string name="hostel">Hostel</string>
+    <string name="hostel">Hostel :</string>
     <string name="choose_card">Card type</string>
     <string name="card_number">Card number</string>
     <string name="card_expiration">Expiration date</string>
@@ -56,5 +56,13 @@
     <string name="matches_lost">Games lost : </string>
     <string name="points_scored">Points scord : </string>
     <string name="points_conceded">Points conceded : </string>
+
+    <string name="nohorary">No horary</string>
+    <string name="nodisp">No disponiblity</string>
+    <string name="tripgo">Departure :</string>
+    <string name="triparriv">Arriving :</string>
+
+    <string name="card">Card :</string>
+    <string name="payvalid">Payment validated</string>
 
 </resources>

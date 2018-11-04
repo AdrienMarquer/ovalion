@@ -97,7 +97,11 @@ public class ReservationActivity extends AppCompatActivity
         }
 
         reserv = new Reservation(match,bustripType,ticketType);
-        reserv.setHostel("Ibis " + TeamsEnum.getCityById(match.getCompetitorA().getId()));
+        if(reserv.getBustripType() == "deluxe"){
+            reserv.setHostel("Ibis " + TeamsEnum.getCityById(match.getCompetitorA().getId()));
+        }else{
+            reserv.setHostel("No");
+        }
 
         try{
             //Ajouter les appels a blablacar
@@ -110,16 +114,20 @@ public class ReservationActivity extends AppCompatActivity
 
     public void setTrips(List<BusTrip> trips) {
         this.trips = trips;
-        if(trips != null)
-            Log.d("Adrien","trips " + trips.size());
 
         if(trips == null){
             Log.d("Adrien","trips null");
-        }else{
+        }
+        else if(trips.size() == 0){
+            Log.d("Adrien","trips 0");
+        }
+        else if (trips.size() == 1){
+            reserv.setBusGo(trips.get(0));
+            Log.d("Adrien","trips 1");
+        } else{
             reserv.setBusGo(trips.get(0));
             reserv.setBusBack(trips.get(1));
             Log.d("Adrien","trips OK");
-
         }
 
         Intent intent = new Intent(this, PaymentActivity.class);

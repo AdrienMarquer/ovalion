@@ -12,9 +12,11 @@ public class ReservationBDD {
     private String return_id;
     private String return_gps;
     private String hostel;
+    private String date;
+    private String hour;
 
     public ReservationBDD(int id,String home_team, String away_team, String location, String departure, String departure_id,
-                          String departure_gps, String return_, String return_id, String return_gps, String hostel) {
+                          String departure_gps, String return_, String return_id, String return_gps, String hostel,String date,String hour) {
         this.id = id;
         this.home_team = home_team;
         this.away_team = away_team;
@@ -26,6 +28,8 @@ public class ReservationBDD {
         this.return_id = return_id;
         this.return_gps = return_gps;
         this.hostel = hostel;
+        this.date = date;
+        this.hour = hour;
     }
 
     public ReservationBDD(){}
@@ -116,5 +120,21 @@ public class ReservationBDD {
 
     public void setHostel(String hostel) {
         this.hostel = hostel;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
     }
 }

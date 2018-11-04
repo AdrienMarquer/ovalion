@@ -31,7 +31,7 @@
     <string name="payment">Paiement</string>
     <string name="departure">Départ :</string>
     <string name="retour">Retour :</string>
-    <string name="hostel">Hotel</string>
+    <string name="hostel">Hotel :</string>
     <string name="choose_card">Type de carte</string>
     <string name="card_number">Numéro de carte</string>
     <string name="card_expiration">Date d\'éxpiration</string>
@@ -56,5 +56,12 @@
     <string name="points_scored">Points marqués : </string>
     <string name="points_conceded">Points concédés : </string>
 
+    <string name="nohorary">Aucune horaire</string>
+    <string name="nodisp">Pas de disponiblité</string>
+    <string name="tripgo">Départ :</string>
+    <string name="triparriv">Arrivée :</string>
+
+    <string name="card">Carte :</string>
+    <string name="payvalid">Paiement validé</string>
 
 </resources>
