@@ -25,6 +25,7 @@ public class CursorToReserv {
     private static final int NUM_COL_HOSTEL = 10;
     private static final int NUM_COL_DATE = 11;
     private static final int NUM_COL_HOUR = 12;
+    private static final int NUM_COL_PRICE = 13;
 
     public static ReservationBDD toReserv (Cursor cursor){
         if (cursor.getCount() == 0) return null;
@@ -46,6 +47,7 @@ public class CursorToReserv {
         reserv.setHostel(cursor.getString(NUM_COL_HOSTEL));
         reserv.setDate(cursor.getString(NUM_COL_DATE));
         reserv.setHour(cursor.getString(NUM_COL_HOUR));
+        reserv.setPrice(cursor.getDouble(NUM_COL_PRICE));
 
         cursor.close();
 
@@ -77,6 +79,7 @@ public class CursorToReserv {
             reserv.setHostel(cursor.getString(NUM_COL_HOSTEL));
             reserv.setDate(cursor.getString(NUM_COL_DATE));
             reserv.setHour(cursor.getString(NUM_COL_HOUR));
+            reserv.setPrice(cursor.getDouble(NUM_COL_PRICE));
 
             reservs.add(reserv);
             cursor.moveToNext();

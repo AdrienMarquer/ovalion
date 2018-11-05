@@ -15,7 +15,7 @@ public class Reservation implements Parcelable {
     private String ticketType;
     private String hostel;
     private String location;
-
+    private double price;
 
     public Reservation(){}
 
@@ -106,6 +106,14 @@ public class Reservation implements Parcelable {
         this.location = location;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     protected Reservation(Parcel in) {
         id = in.readInt();
         match = (Match) in.readValue(Match.class.getClassLoader());
@@ -116,6 +124,7 @@ public class Reservation implements Parcelable {
         ticketType = in.readString();
         hostel = in.readString();
         location = in.readString();
+        price = in.readDouble();
     }
 
     @Override
@@ -134,6 +143,7 @@ public class Reservation implements Parcelable {
         dest.writeString(ticketType);
         dest.writeString(hostel);
         dest.writeString(location);
+        dest.writeDouble(price);
     }
 
     @SuppressWarnings("unused")

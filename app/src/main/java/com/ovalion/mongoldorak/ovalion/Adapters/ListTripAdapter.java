@@ -65,6 +65,8 @@ public class ListTripAdapter extends RecyclerView.Adapter<ListTripAdapter.ListTr
         viewHolder.trip_info_return_title.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
         viewHolder.trip_info_hotel_title.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
         viewHolder.btnDeleteReserv.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        viewHolder.trip_info_price_title.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        viewHolder.trip_info_price.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
 
         viewHolder.dateTrip.setText(outputlist.get(position).getDate());
         viewHolder.heureTrip.setText(outputlist.get(position).getHour());
@@ -74,6 +76,7 @@ public class ListTripAdapter extends RecyclerView.Adapter<ListTripAdapter.ListTr
         viewHolder.trip_info_depart.setText(outputlist.get(position).getDeparture());
         viewHolder.trip_info_return.setText(outputlist.get(position).getReturn_());
         viewHolder.trip_info_hotel.setText(outputlist.get(position).getHostel());
+        viewHolder.trip_info_price.setText(outputlist.get(position).getPrice() + " €");
 
         viewHolder.container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +123,8 @@ public class ListTripAdapter extends RecyclerView.Adapter<ListTripAdapter.ListTr
         private TextView trip_info_depart_title;
         private TextView trip_info_return_title;
         private TextView trip_info_hotel_title;
+        private TextView trip_info_price_title;
+        private TextView trip_info_price;
 
         public ListTripViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -137,6 +142,8 @@ public class ListTripAdapter extends RecyclerView.Adapter<ListTripAdapter.ListTr
             trip_info_depart_title = (TextView) itemView.findViewById(R.id.trip_info_depart_title);
             trip_info_return_title = (TextView) itemView.findViewById(R.id.trip_info_return_title);
             trip_info_hotel_title = (TextView) itemView.findViewById(R.id.trip_info_hotel_title);
+            trip_info_price_title = (TextView) itemView.findViewById(R.id.trip_info_price_title);
+            trip_info_price = (TextView) itemView.findViewById(R.id.trip_info_price);
         }
     }
 

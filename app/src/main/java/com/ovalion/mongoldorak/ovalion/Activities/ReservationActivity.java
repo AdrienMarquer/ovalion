@@ -1,6 +1,7 @@
 package com.ovalion.mongoldorak.ovalion.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -68,8 +69,6 @@ public class ReservationActivity extends AppCompatActivity
     }
 
     private void reservclick(){
-
-
         String bustripType = "simple";
         String ticketType = "deluxe";
 
@@ -110,6 +109,8 @@ public class ReservationActivity extends AppCompatActivity
 
         }
 
+        reserv_validate.setEnabled(false);
+        reserv_validate.setTextColor(Color.GRAY);
     }
 
     public void setTrips(List<BusTrip> trips) {
@@ -130,8 +131,13 @@ public class ReservationActivity extends AppCompatActivity
             Log.d("Adrien","trips OK");
         }
 
+
         Intent intent = new Intent(this, PaymentActivity.class);
         intent.putExtra("Reservation",reserv);
+
+        reserv_validate.setEnabled(true);
+        reserv_validate.setTextColor(Color.WHITE);
+
         this.startActivity(intent);
     }
 

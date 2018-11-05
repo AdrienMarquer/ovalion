@@ -21,8 +21,8 @@
 
     <string name="reservation">Reservation</string>
     <string name="choose_trip">Trip choice</string>
-    <string name="radio_bustrip">Bus</string>
-    <string name="radio_bustriphotel">Bus + Hostel</string>
+    <string name="radio_bustrip">BlaBlaCar</string>
+    <string name="radio_bustriphotel">Hostel + BlaBlaCar</string>
     <string name="choose_ticket">Ticket choice</string>
     <string name="radio_ticketVIP">Ticket VIP</string>
     <string name="radio_ticketFront">Ticket Front</string>
@@ -30,8 +30,8 @@
     <string name="cancel">Cancel</string>
 
     <string name="payment">Payment</string>
-    <string name="departure">Departure :</string>
-    <string name="retour">Arriving :</string>
+    <string name="departure">Departure BlaBlaCar :</string>
+    <string name="retour">Return BlaBlaCar :</string>
     <string name="hostel">Hostel :</string>
     <string name="choose_card">Card type</string>
     <string name="card_number">Card number</string>
@@ -64,5 +64,9 @@
 
     <string name="card">Card :</string>
     <string name="payvalid">Payment validated</string>
+
+    <string name="dialogblabla">At least one of the BlaBlaCar ride isn\'t available yet, Do you still wan\'t to proceed payment
+        and be alerted when one is available ?</string>
+    <string name="price">Price :</string>
 
 </resources>

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TeamsEnum team;
-
+    String intentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,17 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        if (savedInstanceState == null) {
+        try{
+            intentFragment = getIntent().getExtras().getString("frgToLoad");
+        }catch (Exception e){
+
+        }
+        if(intentFragment != null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new TripFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_reserv);
+        }
+        else if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new CalendarFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_calendar);

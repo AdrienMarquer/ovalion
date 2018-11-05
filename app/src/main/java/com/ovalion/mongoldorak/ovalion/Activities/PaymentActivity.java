@@ -1,6 +1,8 @@
 package com.ovalion.mongoldorak.ovalion.Activities;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import com.ovalion.mongoldorak.ovalion.API.BDD.DatabaseManager;
 import com.ovalion.mongoldorak.ovalion.Activities.Fragments.CalendarFragment;
+import com.ovalion.mongoldorak.ovalion.Activities.Fragments.TeamFragment;
 import com.ovalion.mongoldorak.ovalion.Activities.Fragments.TripFragment;
 import com.ovalion.mongoldorak.ovalion.Models.CreditCard;
 import com.ovalion.mongoldorak.ovalion.Models.Reservation;
@@ -50,12 +53,15 @@ public class PaymentActivity extends AppCompatActivity {
     private Spinner payment_exp_month;
     private Spinner payment_exp_year;
     private TextView payment_card_exp;
+    private TextView payment_info_price;
 
     private Reservation reserv;
     private CreditCard cb = new CreditCard();
-    private boolean checkingOk = true;
     private DatabaseManager db;
-
+    private String exp;
+    private Double price = 0.0;
+    private boolean checkingOk = true;
+    private boolean showDialog = false;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +84,8 @@ public class PaymentActivity extends AppCompatActivity {
         payment_card_exp = (TextView) findViewById(R.id.payment_card_exp);
         payment_exp_month = (Spinner) findViewById(R.id.payment_exp_month);
         payment_exp_year = (Spinner) findViewById(R.id.payment_exp_year);
+        payment_info_price = (TextView) findViewById(R.id.payment_info_price);
+
 
         payment_exp_month.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, months));
         payment_exp_year.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, years));
@@ -85,17 +93,35 @@ public class PaymentActivity extends AppCompatActivity {
         Bundle data = getIntent().getExtras();
         reserv = (Reservation) data.getParcelable("Reservation");
 
+        if(reserv.getBustripType().equals("deluxe")){
+            price += 60.0;
+        }
+
         if(reserv.getBusGo() != null){
             payment_info_depart_1.setText(reserv.getBusGo().getDeparture_adress());
             payment_info_depart_2.setText(reserv.getBusGo().getArrival_adress());
+            price += convertStringtoDouble(reserv.getBusGo().getCost());
+        }else{
+            price += 30;
+            showDialog = true;
         }
 
         if(reserv.getBusBack() != null){
             payment_info_return_1.setText(reserv.getBusBack().getDeparture_adress());
             payment_info_return_2.setText(reserv.getBusBack().getArrival_adress());
+            price += convertStringtoDouble(reserv.getBusBack().getCost());
+        }else{
+            price += 30;
+            showDialog = true;
         }
 
+        if(showDialog){
+            showAlert();
+        }
+
+
         payment_info_hotel.setText(reserv.getHostel());
+        payment_info_price.setText(price.toString() + " €");
 
         paymment_validate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,11 +135,9 @@ public class PaymentActivity extends AppCompatActivity {
                 cancelClick();
             }
         });
-
     }
 
     private void validateClick(){
-        String exp;
         //check
         switch (payment_card_type.getCheckedRadioButtonId())
         {
@@ -125,6 +149,50 @@ public class PaymentActivity extends AppCompatActivity {
                 break;
         }
 
+        verifCardNumber();
+        verifCardCrypto();
+        verifCardExp();
+
+        reserv.setCb(cb);
+        reserv.setPrice(price);
+
+        if(checkingOk){
+            db.insertReservation(reserv);
+            Toast.makeText(this,getResources().getString(R.string.payvalid),Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("frgToLoad", "reserv");
+            this.startActivity(intent);
+            //finish();
+        }else{
+            checkingOk = true;
+        }
+    }
+    private void showAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(
+                getResources().getString(R.string.dialogblabla))
+                .setCancelable(false)
+                .setPositiveButton("ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int id) {
+                                //to perform on ok
+                            }
+                        })
+                .setNegativeButton("cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int id) {
+                                finish();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void verifCardNumber()
+    {
         if(payment_card_number.getText() != null && !payment_card_number.getText().toString().isEmpty()){
             payment_card_text.setTextColor(Color.WHITE);
             cb.setNumber(payment_card_number.getText().toString());
@@ -132,7 +200,10 @@ public class PaymentActivity extends AppCompatActivity {
             payment_card_text.setTextColor(Color.RED);
             checkingOk = false;
         }
+    }
 
+    private void verifCardCrypto()
+    {
         if(payment_card_crypto.getText().toString() != null && !payment_card_crypto.getText().toString().isEmpty()
                 && payment_card_crypto.getText().length() == 3){
             payment_crypto_text.setTextColor(Color.WHITE);
@@ -141,7 +212,10 @@ public class PaymentActivity extends AppCompatActivity {
             payment_crypto_text.setTextColor(Color.RED);
             checkingOk = false;
         }
+    }
 
+    private void verifCardExp()
+    {
         exp = payment_exp_month.getSelectedItem().toString() + "/" + payment_exp_year.getSelectedItem().toString();
         if(isExpirationOk(exp)){
             payment_card_exp.setTextColor(Color.WHITE);
@@ -150,23 +224,14 @@ public class PaymentActivity extends AppCompatActivity {
             payment_card_exp.setTextColor(Color.RED);
             checkingOk = false;
         }
-
-        reserv.setCb(cb);
-
-        if(checkingOk){
-
-            db.insertReservation(reserv);
-            Toast.makeText(this,getResources().getString(R.string.payvalid),Toast.LENGTH_SHORT).show();
-
-            finish();
-        }else{
-            checkingOk = true;
-        }
     }
 
+    private double convertStringtoDouble(String price)
+    {
+        price = price.replace(",",".");
+        price = price.replaceAll("[^.1234567890]", "");
 
-    private void cancelClick(){
-        finish();
+        return Double.parseDouble(price);
     }
 
     private boolean isExpirationOk(String date)
@@ -187,4 +252,7 @@ public class PaymentActivity extends AppCompatActivity {
         }
     }
 
+    private void cancelClick(){
+        finish();
+    }
 }

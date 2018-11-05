@@ -20,8 +20,8 @@
 
     <string name="reservation">Réservation</string>
     <string name="choose_trip">Choix du trip</string>
-    <string name="radio_bustrip">Bus</string>
-    <string name="radio_bustriphotel">Bus + Hotel</string>
+    <string name="radio_bustrip">BlaBlacar</string>
+    <string name="radio_bustriphotel">Hotel + BlaBlaCar</string>
     <string name="choose_ticket">Choix du ticket</string>
     <string name="radio_ticketVIP">Ticket VIP</string>
     <string name="radio_ticketFront">Ticket Front</string>
@@ -29,8 +29,8 @@
     <string name="cancel">Annuler</string>
 
     <string name="payment">Paiement</string>
-    <string name="departure">Départ :</string>
-    <string name="retour">Retour :</string>
+    <string name="departure">Départ BlaBlaCar :</string>
+    <string name="retour">Retour BlaBlaCar :</string>
     <string name="hostel">Hotel :</string>
     <string name="choose_card">Type de carte</string>
     <string name="card_number">Numéro de carte</string>
@@ -63,5 +63,9 @@
 
     <string name="card">Carte :</string>
     <string name="payvalid">Paiement validé</string>
+
+    <string name="dialogblabla">Au moins un des trajets blablacar n\'est pas encore disponible, voulez vous
+        quand-même procéder au paiement et être avertis quand un trajet est disponible ?</string>
+    <string name="price">Prix :</string>
 
 </resources>

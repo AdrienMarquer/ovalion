@@ -14,6 +14,7 @@ public class ReservationBDD {
     private String hostel;
     private String date;
     private String hour;
+    private double price;
 
     public ReservationBDD(int id,String home_team, String away_team, String location, String departure, String departure_id,
                           String departure_gps, String return_, String return_id, String return_gps, String hostel,String date,String hour) {
@@ -136,5 +137,13 @@ public class ReservationBDD {
 
     public void setHour(String hour) {
         this.hour = hour;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

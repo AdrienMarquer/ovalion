@@ -21,7 +21,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     //Database infos
     private static final String DATABASE_NAME = "Ovalion.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     //Tables names
     private static final String TABLE_RESERV = "table_reserv";
@@ -42,13 +42,15 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String COL_HOSTEL = "hostel";
     private static final String COL_DATE = "date";
     private static final String COL_HOUR = "hour";
+    private static final String COL_PRICE = "price";
 
 
     private static final String CREATE_RESERVBDD = "CREATE TABLE " + TABLE_RESERV + " ("
             + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COL_HOME_TEAM + " TEXT , " + COL_AWAY_TEAM + " TEXT , "
             + COL_LOCATION + " TEXT , " + COL_BUS_GO + " TEXT , " + COL_BUS_GO_ID + " TEXT ," + COL_BUS_GO_GPS + " TEXT ,"
-            + COL_BUS_BACK + " TEXT , " + COL_BUS_BACK_ID + " TEXT , " + COL_BUS_BACK_GPS + " TEXT , " + COL_HOSTEL + " TEXT, " + COL_DATE + " TEXT, "+ COL_HOUR + " TEXT);";
+            + COL_BUS_BACK + " TEXT , " + COL_BUS_BACK_ID + " TEXT , " + COL_BUS_BACK_GPS + " TEXT , " + COL_HOSTEL + " TEXT, "
+            + COL_DATE + " TEXT, "+ COL_HOUR + " TEXT, " + COL_PRICE + " REAL);";
 
     private final Context context;
 
@@ -103,6 +105,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         values.put(COL_HOSTEL, reserv.getHostel());
         values.put(COL_DATE, reserv.getMatch().getDate());
         values.put(COL_HOUR, reserv.getMatch().getTime());
+        values.put(COL_PRICE, reserv.getPrice());
 
         db.insert(TABLE_RESERV, null, values);
 

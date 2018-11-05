@@ -56,7 +56,7 @@ public class CalendarFragment  extends Fragment
         this.matchs = matchs;
 
         try {
-            Thread.sleep(1500);
+            Thread.sleep(1100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -74,7 +74,6 @@ public class CalendarFragment  extends Fragment
                     }
                 }
             }
-
 
         rv.setAdapter(new ListCalendarAdapter(getContext(),matchs));
     }
