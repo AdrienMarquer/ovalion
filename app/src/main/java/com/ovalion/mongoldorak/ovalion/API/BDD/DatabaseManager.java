@@ -112,7 +112,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         Log.i(LOG,"insterReserv called");
     }
 
-    public List<ReservationBDD> getTasks(){
+    public List<ReservationBDD> getReservs(){
         List<ReservationBDD> reservs;
 
         String strSql = "SELECT * FROM " + TABLE_RESERV;

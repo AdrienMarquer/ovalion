@@ -32,7 +32,7 @@ public class TripFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView=inflater.inflate(R.layout.fragment_trip, container, false);
         db = new DatabaseManager(inflater.getContext());
-        reservs = db.getTasks();
+        reservs = db.getReservs();
 
         //REFERENCE
         rv= (RecyclerView) rootView.findViewById(R.id.trip_recycler_view);

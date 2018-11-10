@@ -2,6 +2,8 @@ package com.ovalion.mongoldorak.ovalion.Adapters;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -77,6 +79,38 @@ public class ListTripAdapter extends RecyclerView.Adapter<ListTripAdapter.ListTr
         viewHolder.trip_info_return.setText(outputlist.get(position).getReturn_());
         viewHolder.trip_info_hotel.setText(outputlist.get(position).getHostel());
         viewHolder.trip_info_price.setText(outputlist.get(position).getPrice() + " €");
+
+        if(dateCheck(outputlist.get(position).getDate())){
+            viewHolder.dateTrip.setTextColor(Color.GRAY);
+            viewHolder.heureTrip.setTextColor(Color.GRAY);
+            viewHolder.homeTrip.setTextColor(Color.GRAY);
+            viewHolder.awayTrip.setTextColor(Color.GRAY);
+            viewHolder.trip_info_location.setTextColor(Color.GRAY);
+            viewHolder.trip_info_depart.setTextColor(Color.GRAY);
+            viewHolder.trip_info_return.setTextColor(Color.GRAY);
+            viewHolder.trip_info_hotel.setTextColor(Color.GRAY);
+            viewHolder.trip_info_price.setTextColor(Color.GRAY);
+        }else{
+            viewHolder.dateTrip.setTypeface(null, Typeface.ITALIC);
+            viewHolder.heureTrip.setTypeface(null, Typeface.ITALIC);
+            viewHolder.homeTrip.setTypeface(null, Typeface.ITALIC);
+            viewHolder.awayTrip.setTypeface(null, Typeface.ITALIC);
+            viewHolder.trip_info_location.setTypeface(null, Typeface.ITALIC);
+            viewHolder.trip_info_depart.setTypeface(null, Typeface.ITALIC);
+            viewHolder.trip_info_return.setTypeface(null, Typeface.ITALIC);
+            viewHolder.trip_info_hotel.setTypeface(null, Typeface.ITALIC);
+            viewHolder.trip_info_price.setTypeface(null, Typeface.ITALIC);
+            viewHolder.dateTrip.setTextColor(Color.GRAY);
+            viewHolder.heureTrip.setTextColor(Color.GRAY);
+            viewHolder.homeTrip.setTextColor(Color.GRAY);
+            viewHolder.awayTrip.setTextColor(Color.GRAY);
+            viewHolder.trip_info_location.setTextColor(Color.GRAY);
+            viewHolder.trip_info_depart.setTextColor(Color.GRAY);
+            viewHolder.trip_info_return.setTextColor(Color.GRAY);
+            viewHolder.trip_info_hotel.setTextColor(Color.GRAY);
+            viewHolder.trip_info_price.setTextColor(Color.GRAY);
+
+        }
 
         viewHolder.container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,6 +190,21 @@ public class ListTripAdapter extends RecyclerView.Adapter<ListTripAdapter.ListTr
         cal.setTime(current);
         cal.add(Calendar.HOUR_OF_DAY, 24);
         current = cal.getTime();
+
+        Date dateB = df.parse(date, new ParsePosition(0));
+
+        if (current.compareTo(dateB) <= 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private boolean dateCheck(String date)
+    {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date current = new Date();
 
         Date dateB = df.parse(date, new ParsePosition(0));
 
