@@ -40,7 +40,7 @@ public class apiSportRadarMatchScoreCalendar extends AsyncTask<Void, Void, List<
 
     public List<Match> getListMatch() {
         try {
-            String   urlString = "https://api.sportradar.us/rugby/trial/v2/union/en/seasons/sr:season:55291/results.json?api_key=vcz9st3jfwmkqamhbwv7pvyv";
+            String   urlString = "https://api.sportradar.us/rugby/trial/v2/union/en/seasons/sr:season:55291/results.json?api_key=2pe692a3456vwezx8wyxrf8x";
             URL url = new URL(urlString);
             URLConnection conn = url.openConnection();
             conn.addRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)");

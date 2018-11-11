@@ -42,7 +42,7 @@ public class apiSportRadarTeamInfo extends AsyncTask<String, Void, TeamInfo> {
     public TeamInfo request(String id) {
         try {
 
-            String  urlString = "https://api.sportradar.us/rugby/trial/v2/union/en/teams/"+id+"/profile.json?api_key=vcz9st3jfwmkqamhbwv7pvyv";
+            String  urlString = "https://api.sportradar.us/rugby/trial/v2/union/en/teams/"+id+"/profile.json?api_key=2pe692a3456vwezx8wyxrf8x";
 
 
             URL url = new URL(urlString);

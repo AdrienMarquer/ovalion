@@ -98,23 +98,23 @@ public class TeamFragment extends Fragment
     }
 
     public void setScores(List<Match> scores){
-
-        for(int j = 0; j < matchs.size(); j++){
-            for(int i =0 ; i < scores.size(); i++){
-                if (scores.get(i).getId().contains(matchs.get(j).getId())){
-                    matchs.get(j).setScoreHome(scores.get(i).getScoreHome());
-                    matchs.get(j).setScoreAway(scores.get(i).getScoreAway());
+        if(scores != null){
+            for(int j = 0; j < matchs.size(); j++){
+                for(int i =0 ; i < scores.size(); i++){
+                    if (scores.get(i).getId().contains(matchs.get(j).getId())){
+                        matchs.get(j).setScoreHome(scores.get(i).getScoreHome());
+                        matchs.get(j).setScoreAway(scores.get(i).getScoreAway());
+                    }
                 }
             }
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            team_recycler_view.setAdapter(new ListCalendarAdapter(getContext(),matchs));
         }
-
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        team_recycler_view.setAdapter(new ListCalendarAdapter(getContext(),matchs));
-
     }
 }

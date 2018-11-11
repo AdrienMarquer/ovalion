@@ -47,7 +47,7 @@ public class apiSportRadarMatchMyTeam extends AsyncTask<Void, Void, List<Match>>
     public List<Match> request() {
         try {
             String urlString = "";
-            urlString = "https://api.sportradar.us/rugby/trial/v2/union/en/seasons/sr:season:55291/schedule.json?api_key=vcz9st3jfwmkqamhbwv7pvyv";
+            urlString = "https://api.sportradar.us/rugby/trial/v2/union/en/seasons/sr:season:55291/schedule.json?api_key=2pe692a3456vwezx8wyxrf8x";
             //   old url when using id   urlString =   "https://api.sportradar.us/rugby/trial/v2/union/en/teams/"+id+"/schedule.json?api_key=vcz9st3jfwmkqamhbwv7pvyv";
             URL url = new URL(urlString);
             URLConnection conn = url.openConnection();

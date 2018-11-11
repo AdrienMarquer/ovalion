@@ -42,7 +42,7 @@ public class apiSportRadarResults extends AsyncTask<Void, Void, List<Competitor>
     public List<Competitor> request()  {
         try {
 
-            String  urlString = "https://api.sportradar.us/rugby/trial/v2/union/en/seasons/sr:season:55291/live_standings.json?api_key=vcz9st3jfwmkqamhbwv7pvyv";
+            String  urlString = "https://api.sportradar.us/rugby/trial/v2/union/en/seasons/sr:season:55291/live_standings.json?api_key=2pe692a3456vwezx8wyxrf8x";
 
 
             URL url = new URL(urlString);

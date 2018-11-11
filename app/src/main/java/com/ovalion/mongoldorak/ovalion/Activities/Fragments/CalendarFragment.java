@@ -65,7 +65,7 @@ public class CalendarFragment  extends Fragment
     }
 
     public void setScores(List<Match> scores){
-
+        if(scores != null){
             for(int j = 0; j < matchs.size(); j++){
                 for(int i =0 ; i < scores.size(); i++){
                     if (scores.get(i).getId().contains(matchs.get(j).getId())){
@@ -75,7 +75,8 @@ public class CalendarFragment  extends Fragment
                 }
             }
 
-        rv.setAdapter(new ListCalendarAdapter(getContext(),matchs));
+            rv.setAdapter(new ListCalendarAdapter(getContext(),matchs));
+        }
     }
 
     private void fireMatchTask(){
